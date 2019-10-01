@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block page_content %}
+    <h1>Blog Categories</h1>
+    <ul class="list-group">
+        {% for category in categories %}
+            <li class="list-group-item"><a href="{% url 'blog_category' category.name %}"> {{ category.name }}</a></li>
+{#            <a href={% url "change_category" category.name %}#}
+        {% endfor %}
+    </ul></br>
+    <form action="/blog/categories" method="post">
+        {% csrf_token %}
+        <div class="form-inline">
+            {{ form.name }}
+            <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+
+    </form>
+
+{% endblock %}
